@@ -1,0 +1,15 @@
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\bin\Debug\net8.0\evoHF.exe
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\bin\Debug\net8.0\evoHF.deps.json
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\bin\Debug\net8.0\evoHF.runtimeconfig.json
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\bin\Debug\net8.0\evoHF.dll
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\bin\Debug\net8.0\evoHF.pdb
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\obj\Debug\net8.0\evoHF.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\obj\Debug\net8.0\evoHF.AssemblyInfoInputs.cache
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\obj\Debug\net8.0\evoHF.AssemblyInfo.cs
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\obj\Debug\net8.0\evoHF.csproj.CoreCompileInputs.cache
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\obj\Debug\net8.0\evoHF.sourcelink.json
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\obj\Debug\net8.0\evoHF.dll
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\obj\Debug\net8.0\refint\evoHF.dll
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\obj\Debug\net8.0\evoHF.pdb
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\obj\Debug\net8.0\evoHF.genruntimeconfig.cache
+C:\Users\gerre\Desktop\evoHF\evoHF\evoHF\obj\Debug\net8.0\ref\evoHF.dll
