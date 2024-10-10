@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("evoHF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c70714b7f55796ad98f378eae4bcc99454495e33")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7fad5949104be3ee7e8d3147629c84cd83d0f4a9")]
 [assembly: System.Reflection.AssemblyProductAttribute("evoHF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("evoHF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

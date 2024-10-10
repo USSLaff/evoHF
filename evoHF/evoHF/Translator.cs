@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace evoHF
 {
-	public class Decoder
+	public class Translator
 	{
 		public char _shortSign = '.';
 		public char _longSign = '-';
