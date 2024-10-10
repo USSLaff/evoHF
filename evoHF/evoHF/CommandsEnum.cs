@@ -6,5 +6,6 @@
 	Decode,
 	Translator,
 	Config,
-	Sound
+	Sound,
+	Exit
 }

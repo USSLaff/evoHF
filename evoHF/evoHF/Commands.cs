@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace evoHF
-{d
+{
 	internal class Commands
 	{
 		public const String MSG_SEPARATOR = "%";

@@ -11,25 +11,6 @@ namespace evoHF
 		public char _shortSign = '.';
 		public char _longSign = '-';
 
-		public char ReadSign()
-		{
-			char _read;
-
-
-			if (!char.TryParse(Console.ReadLine(), out _read))
-			{
-				return ReadSign();
-			};
-
-			if (_shortSign == _read)
-			{
-				Console.WriteLine("Short and long signs cannot be the same!");
-				return ReadSign();
-			}
-
-			return _read;
-		}
-
 		public string Decode(string input)
 		{
 
@@ -48,7 +29,7 @@ namespace evoHF
 
 		public override string ToString()
 		{
-			return $"Short sign: {_shortSign}\nLong sign : {_longSign}";
+			return $"Short sign : {_shortSign}\nLong sign  : {_longSign}";
 		}
 	}
 }

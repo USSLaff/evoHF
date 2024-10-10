@@ -47,57 +47,33 @@ namespace evoHF
 		// '/' for letter spacing, ' ' for word spacing? 
 		// WHAT DO I USE FOR SIGN SPACING????
 
+		public static bool _sound = false;
+		public static Translator _translator = new Translator();
+		public static CommandHandler _handler = new CommandHandler();
+
 		static void Main(string[] args)
 		{
-			Decoder _decoder = new Decoder();
+			
 
-			if (ReadConfig())
+
+            Console.WriteLine("Welcome! Type \"help\" to list available commands.");
+
+			Command command;
+
+			do
 			{
-				Console.WriteLine("Reading morse-signs from file...");
-				try
-				{
-					string[] _decodeData = File.ReadAllLines("decodeParams.txt");
+				Console.Write(">");
+				command = new Command(Console.ReadLine());
+				_handler.EvaluateCommand(command);
+			} while (command.type!=CommandType.Exit);
 
-					if (_decodeData[0].Equals(_decodeData[1]))
-					{
-						Console.WriteLine("Reading failed!\nShort and long signs cannot be the same!");
-					}
-					else
-					{
-						Console.WriteLine("Reading successful!");
-					}
-				}
-				catch (Exception ex)
-				{
-					Console.WriteLine($"Reading failed:\n{ex.Message}");
-					Console.WriteLine("Resorting to manual reading...");
-				}
-			}
-			else
-			{
-				ReadStart(_decoder);
-			}
-
-			Console.WriteLine(_decoder);
-
-            Console.ReadKey();
 		}
-
-		static void ReadStart(Decoder decoder)
-		{
-			Console.Write("Short sign character: ");
-			decoder._shortSign=decoder.ReadSign();
-			Console.Write("Long sign character: ");
-			decoder._longSign = decoder.ReadSign();
-		}
-
 
 
 		//input scanning with recursion
 		static bool ReadConfig()
 		{
 			char _read;
-			Console.WriteLine("Read morse-signs from config? [y/n]");
 
 			if (!char.TryParse(Console.ReadLine(),out _read)) {
 				return ReadConfig();

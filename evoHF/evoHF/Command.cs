@@ -28,28 +28,25 @@ namespace evoHF
 					type = CommandType.Help;
 					return;
 				case Commands.CMD_CONFIG:
-					type = CommandType.ReadConfig;
+					type = CommandType.Config;
 					return;
-				case Commands.CMD_USER_SHOOT:
-					type = MessageType.UserShoot;
+				case Commands.CMD_EXIT:
+					type = CommandType.Exit;
 					return;
-				case Commands.CMD_USER_CREATELOBBY:
-					type = MessageType.UserCreateLobby;
+				case Commands.CMD_DECODE:
+					type = CommandType.Decode;
 					return;
-				case Commands.CMD_USER_JOINLOBBY:
-					type = MessageType.UserJoinLobby;
+				case Commands.CMD_ENCODE:
+					type = CommandType.Encode;
 					return;
-				case Commands.CMD_USER_GETROOM:
-					type = MessageType.UserGetRooms;
+				case Commands.CMD_SET_SOUND:
+					type = CommandType.Sound;
 					return;
-				case Commands.CMD_USER_SHIPDMGTAKE:
-					type = MessageType.UserShipDMGTake;
-					return;
-				case Commands.CMD_USER_LEAVELOBBY:
-					type = MessageType.UserLeaveLobby;
+				case Commands.CMD_TRANSLATOR:
+					type = CommandType.Translator;
 					return;
 				default:
-					type = MessageType.Null;
+					type = CommandType.Null;
 					return;
 
 			}
