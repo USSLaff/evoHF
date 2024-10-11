@@ -7,5 +7,6 @@
 	Translator,
 	Config,
 	Sound,
+	Clear,
 	Exit
 }

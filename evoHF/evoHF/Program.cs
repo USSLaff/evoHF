@@ -43,50 +43,21 @@ namespace evoHF
 				{'8' , "---.."},
 				{'9' , "----."},
 			};
-
-		// '/' for letter spacing, ' ' for word spacing? 
-		// WHAT DO I USE FOR SIGN SPACING????
-
 		public static bool _sound = false;
 		public static Translator _translator = new Translator();
 		public static CommandHandler _handler = new CommandHandler();
 
 		static void Main(string[] args)
 		{
-			
-
-
-            Console.WriteLine("Welcome! Type \"help\" to list available commands.");
-
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine("Welcome! Type \"help\" to list available commands.");
 			Command command;
 
-			do
+			while (true)
 			{
 				Console.Write(">");
 				command = new Command(Console.ReadLine());
 				_handler.EvaluateCommand(command);
-			} while (command.type!=CommandType.Exit);
-
-		}
-
-
-		//input scanning with recursion
-		static bool ReadConfig()
-		{
-			char _read;
-
-			if (!char.TryParse(Console.ReadLine(),out _read)) {
-				return ReadConfig();
-			};
-
-			switch (_read)
-			{
-				case 'n':
-					return false;
-				case 'y':
-					return true;
-				default:
-					return ReadConfig();
 			}
 		}
 	}

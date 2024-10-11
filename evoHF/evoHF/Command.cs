@@ -45,6 +45,9 @@ namespace evoHF
 				case Commands.CMD_TRANSLATOR:
 					type = CommandType.Translator;
 					return;
+				case Commands.CMD_CLEAR:
+					type = CommandType.Clear;
+					return;
 				default:
 					type = CommandType.Null;
 					return;

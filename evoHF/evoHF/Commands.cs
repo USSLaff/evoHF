@@ -8,19 +8,15 @@ namespace evoHF
 {
 	internal class Commands
 	{
-		public const String MSG_SEPARATOR = "%";
-		public const String PARAM_SEPARATOR = "@";
-		public const String ATTRIBUTE_SEPARATOR = "|";
-		public const String OBJECT_SEPARATOR = "}";
-		public const String LINE_SEPARATOR = "#";
-		//----------------------------------------------------------------------
 		public const String CMD_TRANSLATOR = "translator";
 		public const String CMD_CONFIG = "config";
 		public const String CMD_ENCODE = "encode";
 		public const String CMD_DECODE = "decode";
 		public const String CMD_EXIT = "exit";
 		public const String CMD_SET_SOUND = "sound";
+		public const String CMD_CLEAR = "clear";
 		public const String CMD_HELP = "help";
 
 	}
 }
+

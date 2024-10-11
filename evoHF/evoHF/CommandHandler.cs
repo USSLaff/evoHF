@@ -9,107 +9,178 @@ namespace evoHF
 {
 	internal class CommandHandler
 	{
-
 		public void EvaluateCommand(Command command)
 		{
 			switch (command.type) {
 				case CommandType.Help:
-					
+					HelpCommand();
 					break;
-
 				case CommandType.Translator:
 					TranslatorCommand(command);
 					break;
                 case CommandType.Sound:
 					SoundCommand(command);
 					break;
-
+				case CommandType.Config:
+					ConfigCommand(command);
+					break;
+				case CommandType.Clear:
+					ClearCommand();
+					break;
+				case CommandType.Exit:
+                    ExitCommand();
+                    break;
 				case CommandType.Null:
 				default:
                     Console.WriteLine($"Command not recognised: {command.text[0]}");
 					break;
 			}
 		}
+		void ConfigCommand(Command command)
+		{
+			switch (command.text.Length)
+			{
+				case 1:
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine("Load: Loads the config file's translator parameters into the current translator.");
+					Console.WriteLine("Save: Saves the current translator's parameters into the destination file.");
+					Console.WriteLine("Read: Prints the parameters of the config file.");
+					Console.ForegroundColor = ConsoleColor.White;
+					break;
+				case 2:
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine("File name is required. <-config [subcommand] [filename]->");
+					Console.ForegroundColor = ConsoleColor.White;
+					break;
 
+				default:
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine("nuh uh");
+					Console.ForegroundColor = ConsoleColor.White;
+					break;
+			}
+		}
+		void HelpCommand ()
+		{
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine("<-help->");
+			Console.WriteLine("<-encode [file name]->");
+			Console.WriteLine("<-decode [file name]->");
+			Console.WriteLine("<-translator [get/set]->");
+			Console.WriteLine("<-config [load/read/save] [filename]->");
+			Console.WriteLine("<-sound [1/0]->");
+			Console.WriteLine("<-clear->");
+			Console.WriteLine("<-exit->");
+			Console.ForegroundColor= ConsoleColor.White;
+		}
 		void SoundCommand(Command command)
 		{
 			if (command.text.Length != 2)
 			{
-				Console.WriteLine("Invalid amount of parameters. [sound <state>]");
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("Invalid amount of parameters. <-sound [1/0]->");
+				Console.ForegroundColor = ConsoleColor.White;
+
 				return;
 			}
 			switch (command.text[1])
 			{
 				case "1":
+					Console.ForegroundColor = ConsoleColor.Green;
 					Console.WriteLine("Sounds enabled.");
+
 					Program._sound = true;
 					break;
 				case "0":
+					Console.ForegroundColor = ConsoleColor.Green;
 					Console.WriteLine("Sounds disabled.");
+
 					Program._sound = false;
 					break;
 				default:
+					Console.ForegroundColor = ConsoleColor.Red;
 					Console.WriteLine("Invalid parameters. [1=on,0=off]");
+
 					break;
 			}
+			Console.ForegroundColor = ConsoleColor.White;
 		}
 		void TranslatorCommand(Command command)
 		{
 			int commandParams = command.text.Length;
 			if (commandParams != 2 && commandParams != 4) {
-                Console.WriteLine("Invalid parameter count. <translator [get/set]>");
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("Invalid parameter count. <-translator [get/set]->");
+				Console.ForegroundColor = ConsoleColor.White;
 				return;
             }
-
-
 
 			switch (command.text[1])
 			{
 				case "get":
+					Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine(Program._translator);
-                    break;
+					Console.ForegroundColor = ConsoleColor.White;
+
+					break;
 				case "set":
 
 					if (command.text.Length != 4)
 					{
-                        Console.WriteLine("Invalid parameter count.\n<translator set [shortSign] [longSign]");
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("Invalid parameter count.\n<-translator set [shortSign] [longSign]->");
+						Console.ForegroundColor = ConsoleColor.White;
+
 						return;
 					}
 
 					char shortS;
 					char longS;
 
-					if (!char.TryParse(command.text[2], out shortS))
+					if (!char.TryParse(command.text[2], out shortS) || !char.TryParse(command.text[3], out longS))
 					{
-                        Console.WriteLine("Invalid short sign paramater. Must be a single character.");
-						return;
-					};
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("Invalid sign paramater. Must be a single character.");
+						Console.ForegroundColor = ConsoleColor.White;
 
-					if (!char.TryParse(command.text[3], out longS))
-					{
-						Console.WriteLine("Invalid long sign paramater. Must be a single character.");
 						return;
 					};
 
 					if (shortS == longS)
 					{
-                        Console.WriteLine("Short and long signs cannot be the same.");
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("Short and long signs cannot be the same.");
+						Console.ForegroundColor = ConsoleColor.White;
+
 						return;
                     }
+
 					Program._translator._shortSign = shortS;
 					Program._translator._longSign = longS;
 
-                    Console.WriteLine($"New translator parameters:\nShort sign : {shortS}\nLong sign  : {longS}");
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine($"New translator parameters:\nShort sign : {shortS}\nLong sign  : {longS}");
+					Console.ForegroundColor = ConsoleColor.White;
 
 
 
-                    break;
+					break;
 				default:
-                    Console.WriteLine("Invalid parameters.");
-                    break;
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine("Invalid parameters.");
+					Console.ForegroundColor = ConsoleColor.White;
+					break;
 			}
 
-			
+		}
+		void ExitCommand()
+		{
+			Console.WriteLine("goodbye~ nya");
+			Thread.Sleep(1500);
+			Environment.Exit(0);
+		}
+		void ClearCommand () {
+			Console.Clear();
 		}
 	}
 }
