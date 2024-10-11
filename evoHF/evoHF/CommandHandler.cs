@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace evoHF
 {
@@ -11,14 +12,15 @@ namespace evoHF
 	{
 		public void EvaluateCommand(Command command)
 		{
-			switch (command.type) {
+			switch (command.type)
+			{
 				case CommandType.Help:
 					HelpCommand();
 					break;
 				case CommandType.Translator:
 					TranslatorCommand(command);
 					break;
-                case CommandType.Sound:
+				case CommandType.Sound:
 					SoundCommand(command);
 					break;
 				case CommandType.Config:
@@ -28,11 +30,11 @@ namespace evoHF
 					ClearCommand();
 					break;
 				case CommandType.Exit:
-                    ExitCommand();
-                    break;
+					ExitCommand();
+					break;
 				case CommandType.Null:
 				default:
-                    Console.WriteLine($"Command not recognised: {command.text[0]}");
+					Console.WriteLine($"Command not recognised: {command.text[0]}");
 					break;
 			}
 		}
@@ -44,24 +46,115 @@ namespace evoHF
 					Console.ForegroundColor = ConsoleColor.Green;
 					Console.WriteLine("Load: Loads the config file's translator parameters into the current translator.");
 					Console.WriteLine("Save: Saves the current translator's parameters into the destination file.");
-					Console.WriteLine("Read: Prints the parameters of the config file.");
+					Console.WriteLine("Read: Prints the parameters of the config file on the console.");
 					Console.ForegroundColor = ConsoleColor.White;
 					break;
+
 				case 2:
 					Console.ForegroundColor = ConsoleColor.Red;
-					Console.WriteLine("File name is required. <-config [subcommand] [filename]->");
+					Console.WriteLine("File name is required. <-config [subcommand] [filename].json->");
 					Console.ForegroundColor = ConsoleColor.White;
+					break;
+
+				case 3:
+					if (command.text[2].Length == 0)
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("File name cannot be empty.");
+						Console.ForegroundColor = ConsoleColor.White;
+						break;
+					}
+					EvaluateConfigCommand(command);
 					break;
 
 				default:
 					Console.ForegroundColor = ConsoleColor.Green;
-					Console.WriteLine("nuh uh");
+					Console.WriteLine("can u dont");
 					Console.ForegroundColor = ConsoleColor.White;
 					break;
 			}
 		}
+
+		void EvaluateConfigCommand(Command command)
+		{
+
+
+
+			switch (command.text[1])
+			{
+
+				case "load":
+					if (!File.Exists($"{command.text[2]}.json"))
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("File does not exist.");
+						Console.ForegroundColor = ConsoleColor.White;
+						break;
+					}
+
+					string _loadCfg = File.ReadAllText($"{command.text[2]}.json");
+					Translator temp;
+					try
+					{
+						temp = JsonSerializer.Deserialize<Translator>(_loadCfg);
+					}
+					catch (JsonException e)
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("Invalid config parameters.");
+						Console.ForegroundColor = ConsoleColor.White;
+						break;
+					}
+
+					if (temp._shortSign == temp._longSign)
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("Invalid config parameters.");
+						Console.ForegroundColor = ConsoleColor.White;
+						break;
+					}
+
+					Program._translator._shortSign = temp._shortSign;
+					Program._translator._longSign = temp._longSign;
+
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine("Translator parameters loaded.");
+					Console.WriteLine(temp);
+					Console.ForegroundColor = ConsoleColor.White;
+					break;
+
+				case "read":
+					if (!File.Exists($"{command.text[2]}.json"))
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("File does not exist.");
+						Console.ForegroundColor = ConsoleColor.White;
+						break;
+					}
+					string readCfg = File.ReadAllText($"{command.text[2]}.json");
+
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine(JsonSerializer.Deserialize<Translator>(readCfg));
+					Console.ForegroundColor = ConsoleColor.White;
+					break;
+
+				case "save":
+					string json = JsonSerializer.Serialize(Program._translator);
+					File.WriteAllText($"{command.text[2]}.json", json);
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine($"Parameters saved on {command.text[2]}.");
+					Console.ForegroundColor = ConsoleColor.White;
+					break;
+				default:
+					break;
+			}
+
+			Console.ForegroundColor = ConsoleColor.White;
+		}
+
 		void HelpCommand ()
 		{
+			
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine("<-help->");
 			Console.WriteLine("<-encode [file name]->");

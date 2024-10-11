@@ -6,18 +6,12 @@ using System.Threading.Tasks;
 
 namespace evoHF
 {
-
-
-
 	internal class Command
 	{
 		public string[] text;
 		public CommandType type;
-
-		
 		public Command(string message)
 		{
-
 			text = message.Split(' ');
 
 			if (text.Length == 0) return;

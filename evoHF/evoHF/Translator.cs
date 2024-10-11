@@ -8,8 +8,8 @@ namespace evoHF
 {
 	public class Translator
 	{
-		public char _shortSign = '.';
-		public char _longSign = '-';
+		public char _shortSign { get; set; }
+		public char _longSign { get; set; }
 
 		public string Decode(string input)
 		{

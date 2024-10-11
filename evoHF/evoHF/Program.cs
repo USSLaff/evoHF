@@ -52,8 +52,11 @@ namespace evoHF
 			Console.ForegroundColor = ConsoleColor.White;
 			Console.WriteLine("Welcome! Type \"help\" to list available commands.");
 			Command command;
+			_translator._shortSign = '.';
+			_translator._shortSign = '-';
 
 			while (true)
+
 			{
 				Console.Write(">");
 				command = new Command(Console.ReadLine());
