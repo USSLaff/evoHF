@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace evoHF
+﻿namespace evoHF
 {
 	internal class Program
 	{
@@ -42,7 +40,21 @@ namespace evoHF
 				{'7' , "--..."},
 				{'8' , "---.."},
 				{'9' , "----."},
+				{'!' , "--.--"},
+				{'(' , "-.--.-"},
+				{')' , "-.--."},
+				{',' , "--..--"},
+				{'-' , "-....-"},
+				{'+' , ".-.-."},
+				{'.' , ".-.-.-"},
+				{'/' , "-..-."},
+				{':' , "---..."},
+				{'?' , "..--.."},
+				{'\"' , ".-..-."},
+				{'\'' , ".----."},
+				{' ' , "\\"},
 			};
+
 		public static bool _sound = false;
 		public static Translator _translator = new Translator();
 		public static CommandHandler _handler = new CommandHandler();
@@ -51,12 +63,13 @@ namespace evoHF
 		{
 			Console.ForegroundColor = ConsoleColor.White;
 			Console.WriteLine("Welcome! Type \"help\" to list available commands.");
+			Console.WriteLine("Default translator signs:");
 			Command command;
 			_translator._shortSign = '.';
-			_translator._shortSign = '-';
+			_translator._longSign = '-';
+            Console.WriteLine(_translator);
 
-			while (true)
-
+            while (true)
 			{
 				Console.Write(">");
 				command = new Command(Console.ReadLine());

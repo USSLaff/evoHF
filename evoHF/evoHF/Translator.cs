@@ -8,12 +8,13 @@ namespace evoHF
 {
 	public class Translator
 	{
+
 		public char _shortSign { get; set; }
 		public char _longSign { get; set; }
 
-		public string Decode(string input)
+		public string Decode(string filename)
 		{
-
+			
 
 			return "";
 		}
