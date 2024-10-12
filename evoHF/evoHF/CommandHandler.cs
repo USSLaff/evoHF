@@ -129,7 +129,7 @@ namespace evoHF
 						Console.ForegroundColor = ConsoleColor.Red;
 						Console.WriteLine("File does not exist.");
 						Console.ForegroundColor = ConsoleColor.White;
-						break;
+						return;
 					}
 
 					string _loadFile = File.ReadAllText($"{command.text[2]}.txt").ToUpper();
@@ -149,8 +149,8 @@ namespace evoHF
 							Console.WriteLine($"Character: \"{item}\" not present in MORSE dictionary. Aborting...");
 							Console.ForegroundColor = ConsoleColor.White;
 
-							break;
-                        }
+							return;
+						}
 					}
 
 					Console.ForegroundColor = ConsoleColor.Green;
@@ -196,7 +196,7 @@ namespace evoHF
 							Console.WriteLine($"Character: \"{item}\" not present in MORSE dictionary. Aborting...");
 							Console.ForegroundColor = ConsoleColor.White;
 
-							break;
+							return;
 						}
 					}
 
