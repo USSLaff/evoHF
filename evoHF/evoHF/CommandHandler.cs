@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Globalization;
+using System.ComponentModel.Design.Serialization;
 
 namespace evoHF
 {
@@ -24,8 +25,8 @@ namespace evoHF
 				case CommandType.Encode:
 					Encode(command);
 					break;
-				case CommandType.Sound:
-					SoundCommand(command);
+				case CommandType.Decode:
+					Decode(command);
 					break;
 				case CommandType.Config:
 					ConfigCommand(command);
@@ -115,7 +116,9 @@ namespace evoHF
 		{
 			if (command.text.Length<3 || command.text[1].Length==0 || command.text[2].Length==0)
 			{
-                Console.WriteLine("Invalid parameters.");
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("Invalid parameters.");
+				Console.ForegroundColor = ConsoleColor.White;
 				return;
 			}
 
@@ -213,6 +216,196 @@ namespace evoHF
                     Console.WriteLine("how");
                     break;
 			}
+		}
+		void Decode(Command command)
+		{
+			if (command.text.Length < 3 || command.text[1].Length == 0 || command.text[2].Length == 0)
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("Invalid parameters.");
+				Console.ForegroundColor = ConsoleColor.White;
+				return;
+			}
+
+			string _decodedA = "";
+			string _decodedB = "";
+
+			switch (command.text[1])
+			{
+				case "file":
+					if (!File.Exists($"{command.text[2]}.txt"))
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("File does not exist.");
+						Console.ForegroundColor = ConsoleColor.White;
+						return;
+					}
+					string loadedFile = File.ReadAllText($"{command.text[2]}.txt");
+
+					char[] fileHelper = loadedFile.ToCharArray();
+
+					List<char> fileUniques = new(fileHelper.Distinct().ToList());
+					fileUniques.Remove(' ');
+					fileUniques.Remove('\\');
+
+					if (fileUniques.Count>2)
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("Invalid MORSE Code.");
+						Console.ForegroundColor = ConsoleColor.White;
+						return;
+					}
+
+					//string[] temp = loadedFile.Split(' ');
+
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine($"MORSE Signs recognised: [{fileUniques[0]};{fileUniques[1]}]");
+					Console.WriteLine($"Attempting translation...");
+					Console.ForegroundColor = ConsoleColor.White;
+
+					string[] loadedSplit = loadedFile.Split(' ');
+					string tempF = "";
+
+					foreach (string item in loadedSplit)
+					{
+						tempF = item;
+						tempF = tempF.Replace(fileUniques[0], '.');
+						tempF = tempF.Replace(fileUniques[1], '-');
+						_decodedA += $"{Program.MorseDict.FirstOrDefault(x => x.Value == tempF).Key}";
+						tempF = item;
+						tempF = tempF.Replace(fileUniques[0], '-');
+						tempF = tempF.Replace(fileUniques[1], '.');
+						_decodedB += $"{Program.MorseDict.FirstOrDefault(x => x.Value == tempF).Key}";
+					}
+
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine("Translation A: ");
+					Console.ForegroundColor = ConsoleColor.Blue;
+					Console.WriteLine(_decodedA);
+					Console.WriteLine($"Saving decoded text to {command.text[2]}_A.txt.");
+					File.WriteAllText($"{command.text[2]}_A.txt", _decodedA);
+
+
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine("Translation B: ");
+					Console.ForegroundColor = ConsoleColor.Blue;
+					Console.WriteLine(_decodedB);
+					Console.WriteLine($"Saving decoded text to {command.text[2]}_B.txt.");
+					File.WriteAllText($"{command.text[2]}_B.txt", _decodedB);
+
+
+					Console.ForegroundColor = ConsoleColor.White;
+
+
+					return;
+				case "text":
+
+					List<string> _lines = command.text.ToList();
+					_lines.RemoveRange(0, 2);
+
+					char[] textHelper = String.Join(" ", _lines.ToArray()).ToCharArray();
+
+					List<char> textUniques = new(textHelper.Distinct().ToList());
+					textUniques.Remove(' ');
+					textUniques.Remove('\\');
+
+					if (textUniques.Count > 2)
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("Invalid MORSE Code.");
+						Console.ForegroundColor = ConsoleColor.White;
+						return;
+					}
+
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine($"MORSE Signs recognised: [{textUniques[0]};{textUniques[1]}]");
+					Console.WriteLine($"Attempting translation...");
+					Console.ForegroundColor = ConsoleColor.White;
+					
+					string tempT = "";
+					char? Tkey = null;
+
+					foreach (string item in _lines)
+					{
+						tempT = item;
+						tempT = tempT.Replace(textUniques[0], '.');
+						tempT = tempT.Replace(textUniques[1], '-');
+
+						try{
+							Tkey = Program.MorseDict.First(x => x.Value == tempT).Key;
+							_decodedA += $"{Tkey}";
+						}
+						catch (Exception e)
+						{
+							_decodedA = " ";
+							break;
+						}						
+
+					}
+
+					foreach (string item in _lines)
+					{
+						tempT = item;
+						tempT = tempT.Replace(textUniques[0], '-');
+						tempT = tempT.Replace(textUniques[1], '.');
+						
+						try
+						{
+							Tkey = Program.MorseDict.First(x => x.Value == tempT).Key;
+							_decodedB += $"{Tkey}";
+						}
+						catch (Exception e)
+						{
+							Console.WriteLine($"\"{tempT}\"");
+							_decodedB = " ";
+							break;
+						}
+					}
+
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine("Translation A: ");
+					if (_decodedA==" ")
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("Invalid.");
+					}
+					else
+					{
+						Console.ForegroundColor = ConsoleColor.Blue;
+						Console.WriteLine(_decodedA);
+						File.WriteAllText($"text_A.txt", _decodedA);
+						Console.WriteLine($"Saving decoded text to text_A.txt.");
+					}
+
+
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine("Translation B: ");
+					if (_decodedB == " ")
+					{
+						Console.ForegroundColor = ConsoleColor.Red;
+						Console.WriteLine("Invalid.");
+					}
+					else
+					{
+						Console.ForegroundColor = ConsoleColor.Blue;
+						Console.WriteLine(_decodedB);
+						File.WriteAllText($"text_B.txt", _decodedB);
+						Console.WriteLine($"Saving decoded text to text_B.txt.");
+					}
+
+
+
+					Console.ForegroundColor = ConsoleColor.White;
+
+					
+					return;
+
+
+				default:
+					Console.WriteLine("how");
+					break;
+			}
+
 		}
 		void ConfigCommand(Command command)
 		{
@@ -335,42 +528,9 @@ namespace evoHF
 			Console.WriteLine("<-decode [file/text] [filename/\"text\".txt]->");
 			Console.WriteLine("<-translator [get/set]->");
 			Console.WriteLine("<-config [load/read/save] [filename]->");
-			Console.WriteLine("<-sound [1/0]->");
 			Console.WriteLine("<-clear->");
 			Console.WriteLine("<-exit->");
 			Console.ForegroundColor= ConsoleColor.White;
-		}
-		void SoundCommand(Command command)
-		{
-			if (command.text.Length != 2)
-			{
-				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine("Invalid amount of parameters. <-sound [1/0]->");
-				Console.ForegroundColor = ConsoleColor.White;
-
-				return;
-			}
-			switch (command.text[1])
-			{
-				case "1":
-					Console.ForegroundColor = ConsoleColor.Green;
-					Console.WriteLine("Sounds enabled.");
-
-					Program._sound = true;
-					break;
-				case "0":
-					Console.ForegroundColor = ConsoleColor.Green;
-					Console.WriteLine("Sounds disabled.");
-
-					Program._sound = false;
-					break;
-				default:
-					Console.ForegroundColor = ConsoleColor.Red;
-					Console.WriteLine("Invalid parameters. [1=on,0=off]");
-
-					break;
-			}
-			Console.ForegroundColor = ConsoleColor.White;
 		}
 		void ExitCommand()
 		{

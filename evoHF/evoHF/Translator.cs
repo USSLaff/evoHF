@@ -12,22 +12,6 @@ namespace evoHF
 		public char _shortSign { get; set; }
 		public char _longSign { get; set; }
 
-		public string Decode(string filename)
-		{
-			
-
-			return "";
-		}
-
-
-
-		public string Encode(string input)
-		{
-
-
-			return "";
-		}
-
 		public override string ToString()
 		{
 			return $"Short sign : {_shortSign}\nLong sign  : {_longSign}";

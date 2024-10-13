@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|solutionrelative:evohf\\commandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|c:\\users\\gerre\\desktop\\evohf\\evohf\\evohf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|solutionrelative:evohf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|c:\\users\\gerre\\desktop\\evohf\\evohf\\evohf\\translator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|solutionrelative:evohf\\translator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|c:\\users\\gerre\\desktop\\evohf\\evohf\\evohf\\command.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,8 +23,8 @@
       "RelativeMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|solutionrelative:evohf\\commands.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|c:\\users\\gerre\\desktop\\evohf\\evohf\\evohf\\translator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|solutionrelative:evohf\\translator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|c:\\users\\gerre\\desktop\\evohf\\evohf\\evohf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D555A4BB-8642-4A48-8FB6-B62B2E35FB0B}|evoHF\\evoHF.csproj|solutionrelative:evohf\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,13 +38,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Translator.cs",
               "DocumentMoniker": "C:\\Users\\gerre\\Desktop\\evoHF\\evoHF\\evoHF\\Translator.cs",
               "RelativeDocumentMoniker": "evoHF\\Translator.cs",
               "ToolTip": "C:\\Users\\gerre\\Desktop\\evoHF\\evoHF\\evoHF\\Translator.cs",
               "RelativeToolTip": "evoHF\\Translator.cs",
-              "ViewState": "AQIAAAEAAAAAAAAAAAAmwAwAAAAlAAAA",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAmwAgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-11T18:52:54.287Z",
               "EditorCaption": ""
@@ -57,7 +57,7 @@
               "RelativeDocumentMoniker": "evoHF\\Command.cs",
               "ToolTip": "C:\\Users\\gerre\\Desktop\\evoHF\\evoHF\\evoHF\\Command.cs",
               "RelativeToolTip": "evoHF\\Command.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAACAAAA",
+              "ViewState": "AQIAABYAAAAAAAAAAAAgwCIAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-11T17:54:01.681Z",
               "EditorCaption": ""
@@ -70,7 +70,7 @@
               "RelativeDocumentMoniker": "evoHF\\CommandsEnum.cs",
               "ToolTip": "C:\\Users\\gerre\\Desktop\\evoHF\\evoHF\\evoHF\\CommandsEnum.cs",
               "RelativeToolTip": "evoHF\\CommandsEnum.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAIAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAcAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-11T17:46:32.351Z",
               "EditorCaption": ""
@@ -90,13 +90,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\gerre\\Desktop\\evoHF\\evoHF\\evoHF\\Program.cs",
               "RelativeDocumentMoniker": "evoHF\\Program.cs",
               "ToolTip": "C:\\Users\\gerre\\Desktop\\evoHF\\evoHF\\evoHF\\Program.cs",
               "RelativeToolTip": "evoHF\\Program.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAQwDAAAAAVAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADkAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-08T17:07:56.614Z",
               "EditorCaption": ""
@@ -109,7 +109,7 @@
               "RelativeDocumentMoniker": "evoHF\\CommandHandler.cs",
               "ToolTip": "C:\\Users\\gerre\\Desktop\\evoHF\\evoHF\\evoHF\\CommandHandler.cs",
               "RelativeToolTip": "evoHF\\CommandHandler.cs",
-              "ViewState": "AQIAAKkAAAAAAAAAAAAUwL8AAAAHAAAA",
+              "ViewState": "AQIAAJYBAAAAAAAAAAAUwA4CAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-11T17:30:36.057Z",
               "EditorCaption": ""

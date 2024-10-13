@@ -33,9 +33,6 @@ namespace evoHF
 				case Commands.CMD_ENCODE:
 					type = CommandType.Encode;
 					return;
-				case Commands.CMD_SET_SOUND:
-					type = CommandType.Sound;
-					return;
 				case Commands.CMD_TRANSLATOR:
 					type = CommandType.Translator;
 					return;
